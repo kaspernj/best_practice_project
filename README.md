@@ -2,7 +2,48 @@
 
 # BestPracticeProject
 
-Description goes here.
+A bundle of various coverage and analytical tools to help you keep your code clean. The idea is that you only have to bundle this project, run the generate config command and start writing clean code for your project.
+
+- Rubocop
+- Rails Best Practices
+- SCSS Lint
+- CoffeeLint
+
+## In development!
+
+This project is still in early development. Currently generating configs only works for Rubocop and SCSS Lint.
+
+## Install
+
+Add to your Gemfile and bundle:
+```ruby
+gem "best_practice_project"
+```
+
+Add this to your Rakefile:
+```ruby
+BestPracticeProject.load_tasks
+```
+
+## Usage
+
+First you can generate some todo configs like this:
+```bash
+bundle exec rake best_practice_project:generate_configs
+```
+
+You can then run all the checks like this:
+```bash
+bundle exec rake best_practice_project:run
+```
+
+You can also run each check manually like this:
+```bash
+bundle exec rake best_practice_project:run_rubocop
+bundle exec rake best_practice_project:run_rails_best_practices
+bundle exec rake best_practice_project:run_coffee_lint
+bundle exec rake best_practice_project:run_scss_lint
+```
 
 ## Contributing to best_practice_project
 
