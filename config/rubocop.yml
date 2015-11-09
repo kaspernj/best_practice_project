@@ -5,10 +5,28 @@ AllCops:
 Metrics/LineLength:
   Max: 160
 
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 25
+
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/Documentation:
+  Enabled: false
+
 Style/EmptyLines:
+  Enabled: false
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+
+StringLiteralsInInterpolation:
   Enabled: false
 
 Style/SignalException:
@@ -20,8 +38,6 @@ Style/MultilineOperationIndentation:
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-StringLiterals:
-  EnforcedStyle: double_quotes
-
-StringLiteralsInInterpolation:
-  Enabled: false
+Style/TrivialAccessors:
+  ExactNameMatch: true
+  Enabled: true

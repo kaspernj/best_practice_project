@@ -5,6 +5,6 @@ rvm:
   - ruby-2.1.2
 script:
   - bundle exec rspec
-  - bundle exec rubocop --rails --config=config/rubocop.yml
+  - bundle exec best_practice_project:run
 notifications:
    email: false
