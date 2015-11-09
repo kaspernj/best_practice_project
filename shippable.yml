@@ -1,0 +1,10 @@
+language: ruby
+cache: bundler
+archive: true
+rvm:
+  - ruby-2.1.2
+script:
+  - bundle exec rspec
+  - bundle exec rubocop --rails --config=config/rubocop.yml
+notifications:
+   email: false

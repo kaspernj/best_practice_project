@@ -1,0 +1,27 @@
+AllCops:
+  Exclude:
+    - db/schema.rb
+
+Metrics/LineLength:
+  Max: 160
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Style/EmptyLines:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+
+StringLiteralsInInterpolation:
+  Enabled: false
