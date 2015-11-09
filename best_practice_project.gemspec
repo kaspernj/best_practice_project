@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "best_practice_project.gemspec",
     "lib/best_practice_project.rb",
     "spec/best_practice_project_spec.rb",
     "spec/spec_helper.rb"
