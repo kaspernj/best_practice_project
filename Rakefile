@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "best_practice_project"
   gem.homepage = "http://github.com/kaspernj/best_practice_project"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A bundle of various linters and code inspection tools}
+  gem.description = %Q{A bundle of various linters and code inspection tools}
   gem.email = "k@spernj.org"
   gem.authors = ["kaspernj"]
   # dependencies defined in Gemfile

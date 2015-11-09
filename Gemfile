@@ -3,6 +3,11 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
+gem "rubocop", "0.35.0", require: false
+gem "coffeelint", "1.11.0", require: false
+gem "scss_lint", require: false
+gem "rails_best_practices", require: false
+
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
