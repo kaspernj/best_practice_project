@@ -1,3 +1,5 @@
+[![Build Status](https://img.shields.io/shippable/56404e3d1895ca447422feda.svg)](https://app.shippable.com/projects/56404e3d1895ca447422feda/builds/latest)
+
 # BestPracticeProject
 
 Description goes here.
