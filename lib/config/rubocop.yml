@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - db/schema.rb
+    - spec/dummy/db/schema.rb
 
 Metrics/LineLength:
   Max: 160
