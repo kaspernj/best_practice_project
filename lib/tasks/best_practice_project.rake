@@ -6,8 +6,8 @@ namespace "best_practice_project" do
   task "run_rubocop" do
     best_practice_project = BestPracticeProject.new
 
-    puts "Executing: #{best_practice_project.rubocop_command}"
-    exit system(best_practice_project.rubocop_command)
+    puts "Executing: #{best_practice_project.rubocop_handler.command}"
+    best_practice_project.rubocop_handler.execute
   end
 
   task "run_scss_lint" do
