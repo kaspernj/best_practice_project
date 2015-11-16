@@ -12,6 +12,9 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 25
 
+Metrics/ClassLength:
+  Max: 250
+
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 
