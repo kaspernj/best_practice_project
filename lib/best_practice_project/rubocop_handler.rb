@@ -47,6 +47,8 @@ class BestPracticeProject::RubocopHandler
       fp.write(YAML.dump(generated_config))
     end
 
+    reset_best_practice_path
+
     puts "Generated Rubocop config in  #{@config_path}"
   end
 
@@ -63,7 +65,10 @@ class BestPracticeProject::RubocopHandler
       File.rename(todo_file_path, todo_backup_file_path)
     end
 
-    system("rubocop --rails --display-cop-names --auto-gen-config --config=#{@actual_config_path}")
+    rubocop_command = "rubocop --display-cop-names --auto-gen-config --config=#{@actual_config_path}"
+    rubocop_command << " --rails" if @bpp.rails?
+
+    system(rubocop_command)
 
     raise "Todo-file was not generated" unless File.exist?(todo_file_path)
 
