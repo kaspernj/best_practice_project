@@ -13,19 +13,19 @@ class BestPracticeProject
   end
 
   def initialize
-    @rubocop_handler = BestPracticeProject::RubocopHandler.new(best_practice_project: self)
+    @rubocop_handler = BestPracticeProject::RubocopHandler.new(best_practice_project: self) if rubocop_installed?
 
     if rails?
-      @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s
-      @coffee_lint_config_path = Rails.root.join("config", "coffeelint.json").to_s
+      @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s if scss_installed?
+      @coffee_lint_config_path = Rails.root.join("config", "coffeelint.json").to_s if coffee_lint_installed?
     end
 
     @commands = []
 
     if rails?
-      @commands << scss_lint_command
-      @commands << coffee_lint_command
-      @commands << rails_best_practices_command
+      @commands << scss_lint_command if scss_installed?
+      @commands << coffee_lint_command if coffee_lint_installed?
+      @commands << rails_best_practices_command if rails_best_practices_installed?
     end
 
     @commands << proc { @rubocop_handler.execute }
@@ -55,9 +55,9 @@ class BestPracticeProject
   end
 
   def generate_configs
-    generate_rubocop_config
-    generate_scss_config
-    generate_coffee_lint_config
+    @rubocop_handler.generate_config if rubocop_installed?
+    generate_scss_config if scss_lint_installed?
+    generate_coffee_lint_config if coffee_lint_installed?
   end
 
   def scss_lint_command
@@ -73,6 +73,42 @@ class BestPracticeProject
   end
 
 private
+
+  def rubocop_installed?
+    begin
+      require "rubocop"
+      true
+    rescue LoadError
+      false
+    end
+  end
+
+  def scss_lint_installed?
+    begin
+      require "scss_lint"
+      true
+    rescue LoadError
+      false
+    end
+  end
+
+  def coffee_lint_installed?
+    begin
+      require "coffeelint"
+      true
+    rescue LoadError
+      false
+    end
+  end
+
+  def rails_best_practices_installed?
+    begin
+      require "rails_best_practices"
+      true
+    rescue LoadError
+      false
+    end
+  end
 
   def generate_coffee_lint_config
     return unless @coffee_lint_config_path

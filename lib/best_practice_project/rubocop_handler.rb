@@ -27,11 +27,7 @@ class BestPracticeProject::RubocopHandler
   def command
     command = "bundle exec rubocop --display-cop-names"
     command << " --rails" if rails?
-
-    if File.exist?(@config_path)
-      command << " \"--config=#{@config_path}\""
-    end
-
+    command << " \"--config=#{@config_path}\"" if File.exist?(@config_path)
     command
   end
 
@@ -71,7 +67,7 @@ class BestPracticeProject::RubocopHandler
 
     raise "Todo-file was not generated" unless File.exist?(todo_file_path)
 
-    todo_config = YAML.load_file(todo_file_path)
+    todo_config = File.read(todo_file_path)
     File.unlink(todo_file_path)
     File.rename(todo_backup_file_path, todo_file_path) if File.exist?(todo_backup_file_path)
 
