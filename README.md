@@ -20,6 +20,16 @@ Add to your Gemfile and bundle:
 gem "best_practice_project"
 ```
 
+Also add the linters and cops that you wish to use. These are supported:
+```ruby
+group :development do
+  gem "rubocop", "~> 0.35.0", require: false
+  gem "coffeelint", "~> 1.11.0", require: false
+  gem "scss_lint", "~> 0.42.2", require: false
+  gem "rails_best_practices", "~> 1.15.7", require: false
+end
+```
+
 Add this to your Rakefile:
 ```ruby
 BestPracticeProject.load_tasks
@@ -43,6 +53,16 @@ bundle exec rake best_practice_project:run_rubocop
 bundle exec rake best_practice_project:run_rails_best_practices
 bundle exec rake best_practice_project:run_coffee_lint
 bundle exec rake best_practice_project:run_scss_lint
+```
+
+Rubocop supports auto correct. Use it like this:
+```bash
+bundle exec rake best_practice_project:run_rubocop --auto-correct
+```
+
+Or:
+```bash
+bundle exec rake best_practice_project:run --auto-correct
 ```
 
 ## Contributing to best_practice_project

@@ -28,6 +28,8 @@ class BestPracticeProject::RubocopHandler
     command = "bundle exec rubocop --display-cop-names"
     command << " --rails" if rails?
     command << " \"--config=#{@config_path}\"" if File.exist?(@config_path)
+    command << " --auto-correct" if ARGV.include?("auto-correct")
+
     command
   end
 

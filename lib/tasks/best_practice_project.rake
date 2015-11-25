@@ -1,5 +1,5 @@
 namespace "best_practice_project" do
-  task "run" do
+  task "run" do |t, args|
     exit BestPracticeProject.new.execute
   end
 
