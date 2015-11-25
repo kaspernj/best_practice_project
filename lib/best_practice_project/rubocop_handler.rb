@@ -1,7 +1,7 @@
 class BestPracticeProject::RubocopHandler
   def initialize(args)
     @bpp = args.fetch(:best_practice_project)
-    @actual_config_path = File.realpath("#{File.dirname(__FILE__)}/../../config/rubocop.yml")
+    @actual_config_path = File.realpath("#{File.dirname(__FILE__)}/config/rubocop.yml")
 
     if rails?
       @config_path = Rails.root.join("config", "rubocop.yml").to_s
@@ -88,7 +88,23 @@ private
 
   def inherit_from_to=(new_inherit_from)
     todo_config = File.read(@todo_path)
-    todo_config.gsub!(/^inherit_from: (.+)$/, "inherit_from: \"#{new_inherit_from}\"")
+
+    replace_with = "inherit_from: \"#{new_inherit_from}\""
+
+    if todo_config.include?("inherit_from:")
+      replace_what = /^inherit_from: (.+)$/
+    elsif todo_config.start_with?("---\n")
+      replace_what = /\A---\n/
+      replace_with.prepend("---\n")
+      replace_with << "\n\n"
+    else
+      replace_what = /\A/
+      replace_with << "\n\n"
+    end
+
+    todo_config.gsub!(replace_what, replace_with)
+
+    raise "Couldn't insert dynamic config" unless todo_config.include?(replace_with)
 
     File.open(@todo_path, "w") do |fp|
       fp.write(todo_config)
