@@ -4,16 +4,24 @@ class BestPracticeProject::RubocopHandler
     @actual_config_path = File.realpath("#{File.dirname(__FILE__)}/config/rubocop.yml")
 
     if rails?
-      @config_path = Rails.root.join("config", "rubocop.yml").to_s
-      @todo_path = Rails.root.join("config", "rubocop_todo.yml").to_s
+      @config_path = Rails.root.join("config", "best_project_practice_rubocop.yml").to_s
+      @todo_path = Rails.root.join("config", "best_project_practice_rubocop_todo.yml").to_s
+      @default_path = Rails.root.join(".rubocop.yml")
+      @default_todo_path = Rails.root.join(".rubocop_todo.yml")
     else
-      @config_path = "config/rubocop.yml"
-      @todo_path = "config/rubocop_todo.yml"
+      @config_path = "config/best_project_practice_rubocop.yml"
+      @todo_path = "config/best_project_practice_rubocop_todo.yml"
+      @default_path = ".rubocop.yml"
+      @default_todo_path = ".rubocop_todo.yml"
     end
   end
 
   def rails?
     @bpp.rails?
+  end
+
+  def remove_best_practice_path
+    self.inherit_from_to = nil
   end
 
   def update_best_practice_path
@@ -22,6 +30,19 @@ class BestPracticeProject::RubocopHandler
 
   def reset_best_practice_path
     self.inherit_from_to = "$$$best_practice_project_config_path$$$"
+  end
+
+  # Make default ".rubocop.yml" and ".rubocop_todo" to support Sublime Text plugins and likewise
+  def update_default_configs
+    remove_best_practice_path
+    File.symlink(@todo_path, @default_todo_path)
+    # FileUtils.cp(@todo_path, @default_todo_path)
+
+    # Make default ".rubocop.yml" and ".rubocop_todo" to support Sublime Text plugins and likewise
+    generated_config = {"inherit_from" => [@actual_config_path, ".rubocop_todo.yml"]}
+    File.open(@default_path, "w") do |fp|
+      fp.write(YAML.dump(generated_config))
+    end
   end
 
   def command
@@ -43,13 +64,13 @@ class BestPracticeProject::RubocopHandler
     puts "Generated Rubocop todo config in #{@todo_path}"
 
     generated_config = {}
-    generated_config["inherit_from"] = "rubocop_todo.yml"
+    generated_config["inherit_from"] = "best_project_practice_rubocop_todo.yml"
 
     File.open(@config_path, "w") do |fp|
       fp.write(YAML.dump(generated_config))
     end
 
-    reset_best_practice_path
+    update_default_configs
 
     puts "Generated Rubocop config in  #{@config_path}"
   end
@@ -87,7 +108,7 @@ class BestPracticeProject::RubocopHandler
     begin
       system(command)
     ensure
-      reset_best_practice_path
+      remove_best_practice_path
     end
   end
 
@@ -96,17 +117,21 @@ private
   def inherit_from_to=(new_inherit_from)
     todo_config = File.read(@todo_path)
 
-    replace_with = "inherit_from: \"#{new_inherit_from}\""
+    if new_inherit_from
+      replace_with = "inherit_from: \"#{new_inherit_from}\""
+    else
+      replace_with = ""
+    end
 
     if todo_config.include?("inherit_from:")
       replace_what = /^inherit_from: (.+)$/
     elsif todo_config.start_with?("---\n")
       replace_what = /\A---\n/
       replace_with.prepend("---\n")
-      replace_with << "\n\n"
+      replace_with << "\n\n" if replace_with.length > 0
     else
       replace_what = /\A/
-      replace_with << "\n\n"
+      replace_with << "\n\n" if replace_with.length > 0
     end
 
     todo_config.gsub!(replace_what, replace_with)

@@ -32,6 +32,7 @@ end
 
 Add this to your Rakefile:
 ```ruby
+require "best_practice_project"
 BestPracticeProject.load_tasks
 ```
 
