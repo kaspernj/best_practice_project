@@ -52,3 +52,7 @@ Style/SpaceInsideHashLiteralBraces:
 Style/TrivialAccessors:
   ExactNameMatch: true
   Enabled: true
+
+# Disabled on purpose: https://github.com/bbatsov/rubocop/issues/1758
+Style/ClosingParenthesisIndentation:
+  Enabled: false
