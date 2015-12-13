@@ -16,14 +16,14 @@ class BestPracticeProject
     @rubocop_handler = BestPracticeProject::RubocopHandler.new(best_practice_project: self) if rubocop_installed?
 
     if rails?
-      @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s if scss_installed?
+      @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s if scss_lint_installed?
       @coffee_lint_config_path = Rails.root.join("config", "coffeelint.json").to_s if coffee_lint_installed?
     end
 
     @commands = []
 
     if rails?
-      @commands << scss_lint_command if scss_installed?
+      @commands << scss_lint_command if scss_lint_installed?
       @commands << coffee_lint_command if coffee_lint_installed?
       @commands << rails_best_practices_command if rails_best_practices_installed?
     end
