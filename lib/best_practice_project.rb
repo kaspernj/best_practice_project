@@ -16,8 +16,11 @@ class BestPracticeProject
     @rubocop_handler = BestPracticeProject::RubocopHandler.new(best_practice_project: self) if rubocop_installed?
 
     if rails?
+      @config_path = Rails.root.join("config")
       @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s if scss_lint_installed?
       @coffee_lint_config_path = Rails.root.join("config", "coffeelint.json").to_s if coffee_lint_installed?
+    else
+      @config_path = "config"
     end
 
     @commands = []
@@ -55,6 +58,8 @@ class BestPracticeProject
   end
 
   def generate_configs
+    Dir.mkdir(@config_path) unless File.exist?(@config_path)
+
     @rubocop_handler.generate_config if rubocop_installed?
     generate_scss_config if scss_lint_installed?
     generate_coffee_lint_config if coffee_lint_installed?
@@ -75,39 +80,31 @@ class BestPracticeProject
 private
 
   def rubocop_installed?
-    begin
-      require "rubocop"
-      true
-    rescue LoadError
-      false
-    end
+    require "rubocop"
+    true
+  rescue LoadError
+    false
   end
 
   def scss_lint_installed?
-    begin
-      require "scss_lint"
-      true
-    rescue LoadError
-      false
-    end
+    require "scss_lint"
+    true
+  rescue LoadError
+    false
   end
 
   def coffee_lint_installed?
-    begin
-      require "coffeelint"
-      true
-    rescue LoadError
-      false
-    end
+    require "coffeelint"
+    true
+  rescue LoadError
+    false
   end
 
   def rails_best_practices_installed?
-    begin
-      require "rails_best_practices"
-      true
-    rescue LoadError
-      false
-    end
+    require "rails_best_practices"
+    true
+  rescue LoadError
+    false
   end
 
   def generate_coffee_lint_config
