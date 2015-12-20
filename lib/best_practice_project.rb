@@ -16,8 +16,11 @@ class BestPracticeProject
     @rubocop_handler = BestPracticeProject::RubocopHandler.new(best_practice_project: self) if rubocop_installed?
 
     if rails?
+      @config_path = Rails.root.join("config")
       @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s if scss_installed?
       @coffee_lint_config_path = Rails.root.join("config", "coffeelint.json").to_s if coffee_lint_installed?
+    else
+      @config_path = "config"
     end
 
     @commands = []
@@ -55,6 +58,8 @@ class BestPracticeProject
   end
 
   def generate_configs
+    Dir.mkdir(@config_path) unless File.exist?(@config_path)
+
     @rubocop_handler.generate_config if rubocop_installed?
     generate_scss_config if scss_lint_installed?
     generate_coffee_lint_config if coffee_lint_installed?
