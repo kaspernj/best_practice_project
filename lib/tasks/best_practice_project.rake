@@ -31,6 +31,13 @@ namespace "best_practice_project" do
     exit system(best_practice_project.rails_best_practices_command)
   end
 
+  task "run_haml_lint" do
+    best_practice_project = BestPracticeProject.new
+
+    puts "Executing: #{best_practice_project.haml_lint_command}"
+    exit system(best_practice_project.haml_lint_command)
+  end
+
   task "generate_configs" do
     BestPracticeProject.new.generate_configs
   end

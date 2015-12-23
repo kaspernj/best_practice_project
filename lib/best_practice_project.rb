@@ -19,6 +19,7 @@ class BestPracticeProject
       @config_path = Rails.root.join("config")
       @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s if scss_lint_installed?
       @coffee_lint_config_path = Rails.root.join("config", "coffeelint.json").to_s if coffee_lint_installed?
+      @haml_lint_config_path = File.realpath("#{File.dirname(__FILE__)}/best_practice_project/config/haml-lint.yml")
     else
       @config_path = "config"
     end
@@ -29,6 +30,7 @@ class BestPracticeProject
       @commands << scss_lint_command if scss_lint_installed?
       @commands << coffee_lint_command if coffee_lint_installed?
       @commands << rails_best_practices_command if rails_best_practices_installed?
+      @commands << haml_lint_command if haml_lint_installed?
     end
 
     @commands << proc { @rubocop_handler.execute }
@@ -63,6 +65,7 @@ class BestPracticeProject
     @rubocop_handler.generate_config if rubocop_installed?
     generate_scss_config if scss_lint_installed?
     generate_coffee_lint_config if coffee_lint_installed?
+    generate_haml_lint_config if haml_lint_installed?
   end
 
   def scss_lint_command
@@ -75,6 +78,10 @@ class BestPracticeProject
 
   def rails_best_practices_command
     "bundle exec rails_best_practices" if rails?
+  end
+
+  def haml_lint_command
+    "bundle exec haml-lint --config \"#{@haml_lint_config_path}\" app/"
   end
 
 private
@@ -107,6 +114,13 @@ private
     false
   end
 
+  def haml_lint_installed?
+    require "haml_lint"
+    true
+  rescue LoadError
+    false
+  end
+
   def generate_coffee_lint_config
     return unless @coffee_lint_config_path
     return puts "Coffee-Lint config already exists in #{@coffee_lint_config_path}" if File.exist?(@coffee_lint_config_path)
@@ -125,5 +139,9 @@ private
     end
 
     puts "Generated SCSS-Lint config in #{@scss_config_path}"
+  end
+
+  def generate_haml_lint_config
+    FileUtils.copy(@haml_lint_config_path, ".haml-lint.yml") unless File.exist?(".haml-lint.yml")
   end
 end
