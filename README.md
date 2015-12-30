@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/shippable/56404e3d1895ca447422feda.svg)](https://app.shippable.com/projects/56404e3d1895ca447422feda/builds/latest)
+[![Build Status](https://img.shields.io/shippable/5676f3b41895ca447466ade8.svg)](https://app.shippable.com/projects/5676f3b41895ca447466ade8/builds/latest)
 
 # BestPracticeProject
 
