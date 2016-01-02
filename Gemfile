@@ -3,7 +3,7 @@ source "http://rubygems.org"
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
-gem "psych", "~> 2.0.0", require: false
+gem "psych", "~> 2.0.0", platform: :ruby, require: false
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
