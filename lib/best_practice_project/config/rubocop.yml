@@ -1,4 +1,6 @@
 AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
   Exclude:
     - db/schema.rb
     - spec/dummy/db/schema.rb

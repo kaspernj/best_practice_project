@@ -16,18 +16,14 @@ class BestPracticeProject
     @rubocop_handler = BestPracticeProject::RubocopHandler.new(best_practice_project: self) if rubocop_installed?
 
     if rails?
-      @config_path = Rails.root.join("config")
-      @scss_config_path = Rails.root.join("config", "scss-lint.yml").to_s if scss_lint_installed?
-      @coffee_lint_config_path = Rails.root.join("config", "coffeelint.json").to_s if coffee_lint_installed?
-    else
-      @config_path = "config"
+      @scss_config_path = ".scss-lint.yml" if scss_lint_installed?
+      @coffee_lint_config_path = "coffeelint.json" if coffee_lint_installed?
     end
 
     @commands = []
 
     if rails?
       @commands << scss_lint_command if scss_lint_installed?
-      @commands << coffee_lint_command if coffee_lint_installed?
       @commands << rails_best_practices_command if rails_best_practices_installed?
     end
 
@@ -41,6 +37,7 @@ class BestPracticeProject
 
   def execute
     process_status = true
+    process_status = coffee_lint_execute if coffee_lint_installed?
 
     @commands.each do |command|
       if command.is_a?(Proc)
@@ -58,23 +55,41 @@ class BestPracticeProject
   end
 
   def generate_configs
-    Dir.mkdir(@config_path) unless File.exist?(@config_path)
-
     @rubocop_handler.generate_config if rubocop_installed?
     generate_scss_config if scss_lint_installed?
     generate_coffee_lint_config if coffee_lint_installed?
   end
 
   def scss_lint_command
-    "bundle exec scss-lint --config config/scss-lint.yml app/assets/stylesheets/" if rails?
+    "bundle exec scss-lint --config .scss-lint.yml app/assets/stylesheets/" if rails?
   end
 
   def coffee_lint_command
-    "bundle exec coffeelint.rb -f config/coffeelint.json -r app/assets/javascripts/" if rails?
+    "bundle exec coffeelint.rb -f coffeelint.json -r app/assets/javascripts/" if rails?
   end
 
   def rails_best_practices_command
     "bundle exec rails_best_practices" if rails?
+  end
+
+  def coffee_lint_execute
+    require "coffeelint"
+
+    dirs = ENV["DIRS"].split(":").map(&:strip) if ENV["DIRS"]
+    dirs ||= ["app/assets/javascripts"]
+    status = true
+
+    dirs.each do |dir|
+      dir = dir.strip
+
+      puts "Running CoffeeLint on: #{dir}"
+      result = Coffeelint.run_test_suite(dir)
+
+      puts "Result: #{result}"
+      status = false if result > 0
+    end
+
+    status
   end
 
 private

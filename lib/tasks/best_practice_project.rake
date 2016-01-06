@@ -1,5 +1,5 @@
 namespace "best_practice_project" do
-  task "run" do |t, args|
+  task "run" do |_t, _args|
     exit BestPracticeProject.new.execute
   end
 
@@ -19,9 +19,7 @@ namespace "best_practice_project" do
 
   task "run_coffee_lint" do
     best_practice_project = BestPracticeProject.new
-
-    puts "Executing: #{best_practice_project.coffee_lint_command}"
-    exit system(best_practice_project.coffee_lint_command)
+    best_practice_project.coffee_lint_execute
   end
 
   task "run_rails_best_practices" do
