@@ -3,30 +3,24 @@ namespace "best_practice_project" do
     exit BestPracticeProject.new.execute
   end
 
-  task "run_rubocop" do
-    best_practice_project = BestPracticeProject.new
+  task "run_haml_lint "do
+    exit BestPracticeProject.new.haml_lint_handler.execute
+  end
 
-    puts "Executing: #{best_practice_project.rubocop_handler.command}"
-    best_practice_project.rubocop_handler.execute
+  task "run_rubocop" do
+    exit BestPracticeProject.new.rubocop_handler.execute
   end
 
   task "run_scss_lint" do
-    best_practice_project = BestPracticeProject.new
-
-    puts "Executing: #{best_practice_project.scss_lint_command}"
-    exit system(best_practice_project.scss_lint_command)
+    exit BestPracticeProject.new.scss_lint_handler.execute
   end
 
   task "run_coffee_lint" do
-    best_practice_project = BestPracticeProject.new
-    best_practice_project.coffee_lint_execute
+    exit BestPracticeProject.new.coffee_lint_handler.execute
   end
 
   task "run_rails_best_practices" do
-    best_practice_project = BestPracticeProject.new
-
-    puts "Executing: #{best_practice_project.rails_best_practices_command}"
-    exit system(best_practice_project.rails_best_practices_command)
+    exit BestPracticeProject.new.rails_best_practices_handler.execute
   end
 
   task "generate_configs" do

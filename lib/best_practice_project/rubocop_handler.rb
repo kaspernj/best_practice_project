@@ -1,6 +1,7 @@
-class BestPracticeProject::RubocopHandler
+class BestPracticeProject::RubocopHandler < BestPracticeProject::BaseHandler
   def initialize(args)
-    @bpp = args.fetch(:best_practice_project)
+    super
+
     @actual_config_path = File.realpath("#{File.dirname(__FILE__)}/config/rubocop.yml")
 
     if rails?
@@ -12,10 +13,6 @@ class BestPracticeProject::RubocopHandler
     end
   end
 
-  def rails?
-    @bpp.rails?
-  end
-
   def command
     command = "bundle exec rubocop --display-cop-names"
     command << " --rails" if rails?
@@ -25,7 +22,6 @@ class BestPracticeProject::RubocopHandler
   end
 
   def generate_config
-    require "fileutils"
     FileUtils.copy(@actual_config_path, @config_path)
 
     generate_todo_config
@@ -36,12 +32,19 @@ class BestPracticeProject::RubocopHandler
 
   def generate_todo_config
     rubocop_command = "rubocop --display-cop-names --auto-gen-config --config=#{@config_path}"
-    rubocop_command << " --rails" if @bpp.rails?
+    rubocop_command << " --rails" if rails?
 
     system(rubocop_command)
   end
 
   def execute
     system(command)
+  end
+
+  def installed?
+    require "rubocop"
+    true
+  rescue LoadError
+    false
   end
 end
