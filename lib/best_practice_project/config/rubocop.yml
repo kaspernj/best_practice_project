@@ -39,6 +39,10 @@ Style/Documentation:
 Style/EmptyLines:
   Enabled: false
 
+# Will report offences for many places that are much more readable without using a guard clause
+Style/GuardClause:
+  Enabled: false
+
 Style/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
