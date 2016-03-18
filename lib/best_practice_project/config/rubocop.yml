@@ -21,6 +21,10 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 250
 
+# .find_each is not the same as .each
+Rails/FindEach:
+  Enabled: false
+
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 
