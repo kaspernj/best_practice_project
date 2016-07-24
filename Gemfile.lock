@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.3.8)
-    auto_autoloader (0.0.1)
+    auto_autoloader (0.0.5)
       string-cases
     builder (3.2.2)
     descendants_tracker (0.0.4)
@@ -62,14 +62,14 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    string-cases (0.0.2)
+    string-cases (0.0.4)
     thread_safe (0.3.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  auto_autoloader
+  auto_autoloader (>= 0.0.5)
   bundler (~> 1.0)
   jeweler (~> 2.0.1)
   rdoc (~> 3.12)
