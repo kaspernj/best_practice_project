@@ -9,6 +9,9 @@ AllCops:
 Style/FileName:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: false
+
 Metrics/CyclomaticComplexity:
   Max: 10
 
