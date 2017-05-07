@@ -68,6 +68,9 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: false
 
+Style/SymbolArray:
+  Enabled: false
+
 Style/NilComparison:
   Enabled: false
 
