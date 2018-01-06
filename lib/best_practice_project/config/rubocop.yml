@@ -26,6 +26,9 @@ Layout/SpaceInsideHashLiteralBraces:
 Lint/EndAlignment:
   EnforcedStyleAlignWith: variable
 
+Metrics/BlockLength:
+  Enabled: false
+
 Metrics/CyclomaticComplexity:
   Max: 10
 
