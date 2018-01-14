@@ -2,6 +2,7 @@ AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
+    - db/data_schema.rb
     - db/schema.rb
     - spec/dummy/db/schema.rb
 
@@ -29,8 +30,14 @@ Layout/SpaceInsideHashLiteralBraces:
 Lint/EndAlignment:
   EnforcedStyleAlignWith: variable
 
+Metrics/AbcSize:
+  Max: 25
+
 Metrics/BlockLength:
   Enabled: false
+
+Metrics/ClassLength:
+  Max: 250
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -40,12 +47,6 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   Max: 50
-
-Metrics/AbcSize:
-  Max: 25
-
-Metrics/ClassLength:
-  Max: 250
 
 # .find_each is not the same as .each
 Rails/FindEach:
