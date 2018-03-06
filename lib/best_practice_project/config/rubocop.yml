@@ -18,6 +18,9 @@ Layout/EmptyLines:
 Layout/EmptyLinesAroundArguments:
   Enabled: false
 
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
@@ -26,9 +29,6 @@ Layout/MultilineOperationIndentation:
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
-
-Lint/EndAlignment:
-  EnforcedStyleAlignWith: variable
 
 Metrics/AbcSize:
   Max: 25
