@@ -4,7 +4,7 @@ AllCops:
   Exclude:
     - db/data_schema.rb
     - db/schema.rb
-    - node_modules
+    - node_modules/**/*
     - spec/dummy/db/schema.rb
 
 Layout/AccessModifierIndentation:
