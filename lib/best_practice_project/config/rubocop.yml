@@ -49,6 +49,9 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 50
 
+Metrics/PerceivedComplexity:
+  Max: 10
+
 # .find_each is not the same as .each
 Rails/FindEach:
   Enabled: false
