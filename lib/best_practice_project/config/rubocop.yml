@@ -78,6 +78,9 @@ Style/GuardClause:
 Style/LambdaCall:
   Enabled: false
 
+Style/MultipleComparison:
+  Enabled: false
+
 Style/RegexpLiteral:
   Enabled: false
 
