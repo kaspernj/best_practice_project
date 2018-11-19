@@ -13,6 +13,9 @@ Layout/AccessModifierIndentation:
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
 Layout/EmptyLines:
   Enabled: false
 
