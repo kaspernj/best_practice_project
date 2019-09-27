@@ -13,6 +13,9 @@ Layout/AccessModifierIndentation:
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
+Layout/AlignArguments:
+  EnforcedStyle: with_fixed_indentation
+
 Layout/CaseIndentation:
   EnforcedStyle: end
 
@@ -57,6 +60,33 @@ Metrics/PerceivedComplexity:
 
 # .find_each is not the same as .each
 Rails/FindEach:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
   Enabled: false
 
 Style/ClassAndModuleChildren:
