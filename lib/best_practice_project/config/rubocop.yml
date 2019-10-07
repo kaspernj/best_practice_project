@@ -113,6 +113,9 @@ Style/FrozenStringLiteralComment:
 Style/GuardClause:
   Enabled: false
 
+Style/Lambda:
+  Enabled: false
+
 Style/LambdaCall:
   Enabled: false
 
