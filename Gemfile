@@ -10,6 +10,9 @@ gem "auto_autoloader", ">= 0.0.5"
 group :development do
   gem "bundler", "~> 1.0"
   gem "jeweler"
+end
+
+group :development, :test do
   gem "rspec"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
