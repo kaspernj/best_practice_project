@@ -1,0 +1,3 @@
+script:
+  - bundle exec rspec
+  - bundle exec best_practice_project:run
