@@ -140,3 +140,6 @@ Style/SymbolArray:
 Style/TrivialAccessors:
   ExactNameMatch: true
   Enabled: true
+
+Style/WordArray:
+  Enabled: false
