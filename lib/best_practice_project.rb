@@ -5,8 +5,8 @@ require "auto_autoloader"
 class BestPracticeProject
   AutoAutoloader.autoload_sub_classes(self, __FILE__)
 
-  attr_reader :rails, :rubocop_handler, :haml_lint_handler, :scss_lint_handler, :coffee_lint_handler, :rails_best_practices_handler
-  alias_method :rails?, :rails
+  attr_reader :rubocop_handler, :haml_lint_handler, :scss_lint_handler, :coffee_lint_handler, :rails_best_practices_handler
+  alias rails rails?
 
   def self.load_tasks
     load "#{File.dirname(__FILE__)}/tasks/best_practice_project.rake"

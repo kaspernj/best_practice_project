@@ -8,7 +8,11 @@ gem "auto_autoloader", ">= 0.0.5"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
-  gem "rspec", "~> 2.8.0"
   gem "bundler", "~> 1.0"
   gem "jeweler"
+  gem "rspec"
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
 end

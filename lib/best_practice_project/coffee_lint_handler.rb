@@ -17,7 +17,7 @@ class BestPracticeProject::CoffeeLintHandler < BestPracticeProject::BaseHandler
       result = Coffeelint.run_test_suite(dir)
 
       puts "Result: #{result}"
-      status = false if result > 0
+      status = false if result.positive?
     end
 
     status

@@ -3,7 +3,7 @@ namespace "best_practice_project" do
     exit BestPracticeProject.new.execute
   end
 
-  task "run_haml_lint "do
+  task "run_haml_lint" do
     exit BestPracticeProject.new.haml_lint_handler.execute
   end
 

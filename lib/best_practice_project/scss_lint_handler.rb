@@ -1,6 +1,7 @@
 class BestPracticeProject::ScssLintHandler < BestPracticeProject::BaseHandler
   def installed?
     return false unless rails?
+
     require "scss_lint"
     true
   rescue LoadError
