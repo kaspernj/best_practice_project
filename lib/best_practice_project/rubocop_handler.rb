@@ -15,7 +15,6 @@ class BestPracticeProject::RubocopHandler < BestPracticeProject::BaseHandler
 
   def command
     command = "bundle exec rubocop --display-cop-names"
-    command << " --rails" if rails?
     command << " --auto-correct" if ARGV.include?("auto-correct")
 
     command
