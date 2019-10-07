@@ -7,6 +7,11 @@ AllCops:
     - node_modules/**/*
     - spec/dummy/db/schema.rb
 
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
