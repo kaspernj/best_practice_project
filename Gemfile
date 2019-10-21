@@ -8,7 +8,7 @@ gem "auto_autoloader", ">= 0.0.5"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
-  gem "jeweler"
+  gem "juwelier"
 end
 
 group :development, :test do
