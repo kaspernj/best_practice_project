@@ -100,6 +100,10 @@ RSpec/NamedSubject:
 RSpec/NestedGroups:
   Enabled: false
 
+# This can make expectaions look weird: Prefer using be_rvm_in_build_config matcher over rvm_in_build_config?
+RSpec/PredicateMatcher:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
