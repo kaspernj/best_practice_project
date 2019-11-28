@@ -18,7 +18,7 @@ Layout/AccessModifierIndentation:
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
-Layout/AlignArguments:
+Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Layout/CaseIndentation:
