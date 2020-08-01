@@ -14,7 +14,7 @@ class BestPracticeProject::RubocopHandler < BestPracticeProject::BaseHandler
   end
 
   def command
-    command = "bundle exec rubocop --display-cop-names"
+    command = "bundle exec rubocop --display-cop-names --enable-pending-cops"
     command << " --auto-correct" if ARGV.include?("auto-correct")
 
     command
@@ -30,7 +30,7 @@ class BestPracticeProject::RubocopHandler < BestPracticeProject::BaseHandler
   end
 
   def generate_todo_config
-    rubocop_command = "rubocop --display-cop-names --auto-gen-config --config=#{@config_path}"
+    rubocop_command = "rubocop --display-cop-names --enable-pending-cops --auto-gen-config --config=#{@config_path}"
     rubocop_command << " --rails" if rails?
 
     system(rubocop_command)
