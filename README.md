@@ -13,6 +13,8 @@ A bundle of various coverage and analytical tools to help you keep your code cle
 
 This project is still in early development. Currently generating configs only works for Rubocop and SCSS Lint.
 
+TensorBuzz skips documentation-only changes for this repository's build lanes.
+
 ## Install
 
 Add to your Gemfile and bundle:
